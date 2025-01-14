@@ -20,7 +20,7 @@ const ContactSection = () => {
       message: target.message.value,
     };
     const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/send";
+    const endpoint = "/api/contact";
 
     try {
       const response = await fetch(endpoint, {
