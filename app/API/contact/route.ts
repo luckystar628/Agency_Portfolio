@@ -1,3 +1,6 @@
+// Modified by Satoru Saito on 2023/05/16.
+// Original source is https://github.com/luckystar628/Agency_Portfolio
+
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import EmailTemplate from "@/components/email-template";
