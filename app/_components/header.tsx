@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import { useTheme } from './ThemeProvider'
 import Link from 'next/link'
 
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const { isDarkMode, toggleDarkMode } = useTheme()
   const [activeSection, setActiveSection] = useState('hero')
 
   useEffect(() => {
