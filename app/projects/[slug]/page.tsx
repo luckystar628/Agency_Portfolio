@@ -17,7 +17,7 @@ const projectsData: ProjectDetails[] = [
       "We implemented advanced features such as real-time inventory management, personalized product recommendations, and a streamlined checkout process.",
       "The platform is built with scalability in mind, allowing businesses to grow their online presence without worrying about technical limitations."
     ],
-    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
+    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png", "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
     timestamp: "Posted on February 15, 2024"
   },
   {
@@ -30,7 +30,7 @@ const projectsData: ProjectDetails[] = [
       "We implemented advanced features such as atomic swaps, liquidity pools, and yield farming to attract and retain users.",
       "The platform's smart contracts have undergone rigorous security audits to ensure the safety of users' funds and transactions."
     ],
-    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
+    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png", "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
     timestamp: "Posted on March 1, 2024"
   },
   {
@@ -43,7 +43,7 @@ const projectsData: ProjectDetails[] = [
       "The chatbot is trained on a vast dataset of customer inquiries and can handle a wide range of topics, from product information to troubleshooting.",
       "We implemented features such as sentiment analysis and context awareness to provide more personalized and effective responses."
     ],
-    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
+    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png", "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
     timestamp: "Posted on March 15, 2024"
   },
   {
@@ -56,7 +56,7 @@ const projectsData: ProjectDetails[] = [
       "We implemented advanced features such as real-time inventory management, personalized product recommendations, and a streamlined checkout process.",
       "The platform is built with scalability in mind, allowing businesses to grow their online presence without worrying about technical limitations."
     ],
-    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
+    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png", "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
     timestamp: "Posted on February 15, 2024"
   },
   {
@@ -69,7 +69,7 @@ const projectsData: ProjectDetails[] = [
       "We implemented advanced features such as atomic swaps, liquidity pools, and yield farming to attract and retain users.",
       "The platform's smart contracts have undergone rigorous security audits to ensure the safety of users' funds and transactions."
     ],
-    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
+    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png", "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
     timestamp: "Posted on March 1, 2024"
   },
   {
@@ -82,7 +82,7 @@ const projectsData: ProjectDetails[] = [
       "The chatbot is trained on a vast dataset of customer inquiries and can handle a wide range of topics, from product information to troubleshooting.",
       "We implemented features such as sentiment analysis and context awareness to provide more personalized and effective responses."
     ],
-    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
+    images: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png", "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
     timestamp: "Posted on March 15, 2024"
   }
 ]

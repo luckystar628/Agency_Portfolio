@@ -74,7 +74,7 @@ export default function HeroSection() {
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-500 text-white">
       <div className="container mx-auto px-6 text-center">
-        <h1 ref={titleRef} className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+        <h1 ref={titleRef} className="text-4xl md:text-6xl font-bold mt-32 mb-6 leading-tight">
           Forging Digital Excellence<br />With Design, Development & Marketing
         </h1>
         <p ref={descriptionRef} className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
