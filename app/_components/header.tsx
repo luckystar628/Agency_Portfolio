@@ -8,6 +8,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const { isDarkMode, toggleDarkMode } = useTheme()
   const [activeSection, setActiveSection] = useState('hero')
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,7 +96,7 @@ export default function Header() {
           ))}
           
           <button
-            // onClick={() => scrollToSection('contact')}
+            onClick={() => setIsBookingModalOpen(true)}
             className={`px-8 py-3 rounded-full transition-all duration-300 text-base font-medium ${
               isScrolled
                 ? 'bg-white text-[#111111] hover:bg-opacity-90'

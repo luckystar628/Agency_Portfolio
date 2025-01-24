@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
 import RelatedProjects from '@/app/_components/projects/RelatedProjects';
-import BookingModal from '@/app/_components/bookingModal';
 
 const projectsData: ProjectDetails[] = [
   {
@@ -190,11 +189,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
       </div>
-
-      <BookingModal 
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-      />
     </div>
   )
 }

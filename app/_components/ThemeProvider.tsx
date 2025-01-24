@@ -4,9 +4,11 @@ import { createContext, useContext, useEffect, useState } from 'react'
 
 const ThemeContext = createContext<{
   isDarkMode: boolean
+  isBookingModalOpen: boolean
   toggleDarkMode: () => void
 }>({
   isDarkMode: false,
+  isBookingModalOpen: false,
   toggleDarkMode: () => {},
 })
 
@@ -14,6 +16,8 @@ export const useTheme = () => useContext(ThemeContext)
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [isDarkMode, setIsDarkMode] = useState(false)
+  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+
 
   useEffect(() => {
     const isDark = localStorage.getItem('darkMode') === 'true'
@@ -29,7 +33,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
   }
 
   return (
-    <ThemeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
+    <ThemeContext.Provider value={{ isDarkMode, isBookingModalOpen, toggleDarkMode }}>
       {children}
     </ThemeContext.Provider>
   )
