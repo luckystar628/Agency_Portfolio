@@ -299,8 +299,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
       </div>
-
-      <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
     </div>
   )
 }
