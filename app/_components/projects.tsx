@@ -3,59 +3,15 @@
 import { useState } from 'react'
 import { Search, X } from 'lucide-react'
 import Link from 'next/link'
-
-const projects = [
-  { 
-    category: "Web Development", 
-    title: "E-commerce Platform", 
-    description: "A fully responsive online store with advanced features and seamless user experience.", 
-    image: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
-    slug: "e-commerce-platform"
-  },
-  {  
-    category: "Web Development", 
-    title: "Portfolio Website", 
-    description: "A sleek and modern portfolio showcasing creative works and professional achievements.", 
-    image: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
-    slug: "portfolio-website"
-  },
-  { 
-    category: "Blockchain Development", 
-    title: "Decentralized Exchange", 
-    description: "A secure and efficient platform for trading cryptocurrencies without intermediaries.", 
-    image: ["/placeholder1.jpg", "/placeholder1.jpg"],
-    slug: "decentralized-exchange"
-  },
-  { 
-    category: "Blockchain Development", 
-    title: "NFT Marketplace", 
-    description: "A vibrant marketplace for creating, buying, and selling unique digital assets.", 
-    image: ["/placeholder2.jpg", "/placeholder2.jpg"],
-    slug: "nft-marketplace"
-  },
-  { 
-    category: "AI Solution", 
-    title: "Chatbot Assistant", 
-    description: "An intelligent conversational AI for customer support and engagement.", 
-    image: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
-    slug: "ai-powered-chatbot"
-  },
-  { 
-    category: "AI Solution", 
-    title: "Predictive Analytics Tool", 
-    description: "A powerful tool leveraging machine learning for data-driven business insights.", 
-    image: ["https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-6QBaTOI7CmwQ9IdUEc0QPV7jarirXR.png"],
-    slug: "predictive-analytics-tool"
-  },
-]
+import { projectsData } from '../_data/projectData'
 
 export default function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
 
-  const categories = ["All", ...new Set(projects.map(project => project.category))]
+  const categories = ["All", ...new Set(projectsData.map(project => project.category))]
 
-  const filteredProjects = projects
+  const filteredProjects = projectsData
     .filter(project => activeCategory === "All" || project.category === activeCategory)
     .filter(project => 
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -79,7 +35,7 @@ export default function ProjectsSection() {
           </div>
         </div>
 
-        <div className="flex flex-col w-full">
+        <div className="flex flex-row justify-between w-full my-4">
           <div className="flex gap-8 overflow-x-auto pb-2 md:pb-0 border-b border-gray-200 dark:border-gray-700">
             {categories.map(category => (
               <button
@@ -102,7 +58,7 @@ export default function ProjectsSection() {
                 placeholder="Search projects"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-10 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-transparent"
+                className="w-full pl-10 pr-10 py-2 border border-gray-400 dark:border-gray-700 rounded-lg bg-transparent"
               />
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
               {searchQuery && (
@@ -126,7 +82,7 @@ export default function ProjectsSection() {
             >
               <div className="aspect-video overflow-hidden">
                 <img 
-                  src={project.image[0]} 
+                  src={project.images[0]} 
                   alt={project.title} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
                 />
