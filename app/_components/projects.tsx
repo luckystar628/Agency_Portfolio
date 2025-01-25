@@ -30,7 +30,7 @@ export default function ProjectsSection() {
           </div>
           <div className="flex items-center">
             <p className="text-gray-600 dark:text-gray-300 text-lg">
-              Discover innovative solutions and success stories from Appifyo. Our portfolio showcases cutting-edge projects that demonstrate our expertise in creating impactful digital experiences.
+              Discover innovative solutions and success stories from With Gru. Our portfolio showcases cutting-edge projects that demonstrate our expertise in creating impactful digital experiences.
             </p>
           </div>
         </div>
@@ -91,7 +91,7 @@ export default function ProjectsSection() {
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                   <p className="text-sm font-medium mb-2 opacity-75">{project.category}</p>
                   <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-sm opacity-90">{project.description}</p>
+                  <p className="text-sm opacity-70">{project.description.split(". ")[0]}</p>
                 </div>
               </div>
             </Link>

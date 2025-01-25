@@ -86,7 +86,7 @@ export default function TestimonialsSection() {
   }
 
   return (
-    <section id="testimonials" className="py-20 bg-gradient-to-br from-blue-500 to-indigo-500 text-white">
+    <section id="testimonials" className="py-20 bg-gray-100 dark:bg-gray-800">
       <div className="container mx-auto px-6">
         <h2 className="text-4xl font-bold text-center mb-12">What Our Clients Say</h2>
         <div className="relative">
@@ -144,8 +144,8 @@ export default function TestimonialsSection() {
               onClick={() => setActiveIndex(index)}
               className={`w-3 h-3 rounded-full transition-colors ${
                 index === activeIndex % testimonials.length || index === (activeIndex + 1) % testimonials.length
-                  ? 'bg-white'
-                  : 'bg-white bg-opacity-50'
+                  ? 'bg-blue-500'
+                  : 'bg-blue-400 bg-opacity-40'
               }`}
               aria-label={`View testimonial ${index + 1}`}
             />

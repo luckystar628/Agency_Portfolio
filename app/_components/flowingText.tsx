@@ -35,7 +35,7 @@ export default function FlowingText() {
   return (
     <div 
       ref={containerRef}
-      className="w-full overflow-hidden py-20 bg-gradient-to-r from-blue-500/10 to-blue-500/5"
+      className="w-full overflow-hidden py-20 "
       // onMouseEnter={handleMouseEnter}
       // onMouseLeave={handleMouseLeave}
     >
@@ -59,10 +59,10 @@ export default function FlowingText() {
           <div 
             className={`flex ${isHovered ? 'animate-none' : 'animate-[scrollLeft_30s_linear_infinite]'}`}
           >
-            <span className="flowing-text text-6xl font-bold text-white/80">
+            <span className="flowing-text text-6xl font-bold text-blue-500/80">
               STRENGTHENING BRANDS THROUGH INNOVATIVE WEB & APP DEVELOPMENT, CREATIVE DESIGNS, SEO, AND STRATEGIC MARKETING
             </span>
-            <span className="flowing-text text-6xl font-bold text-white/80">
+            <span className="flowing-text text-6xl font-bold text-blue-500/80">
               STRENGTHENING BRANDS THROUGH INNOVATIVE WEB & APP DEVELOPMENT, CREATIVE DESIGNS, SEO, AND STRATEGIC MARKETING
             </span>
           </div>
@@ -71,10 +71,10 @@ export default function FlowingText() {
           <div 
             className={`flex ${isHovered ? 'animate-none' : 'animate-[scrollRight_30s_linear_infinite]'}`}
           >
-            <span className="flowing-text text-6xl font-bold text-white/80">
-              INNOVATIVE WEB & APP DEVELOPMENT, CREATIVE DESIGNS, SEO, AND STRATEGIC MARKETING FOR YOUR SUCCESS
+            <span className="flowing-text text-6xl font-bold text-blue-500/80">
+            INNOVATIVE WEB & APP DEVELOPMENT, CREATIVE DESIGNS, SEO, AND STRATEGIC MARKETING FOR YOUR SUCCESS
             </span>
-            <span className="flowing-text text-6xl font-bold text-white/80">
+            <span className="flowing-text text-6xl font-bold text-blue-500/80">
               INNOVATIVE WEB & APP DEVELOPMENT, CREATIVE DESIGNS, SEO, AND STRATEGIC MARKETING FOR YOUR SUCCESS
             </span>
           </div>
