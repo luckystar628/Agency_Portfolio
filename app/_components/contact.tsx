@@ -1,144 +1,164 @@
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
+"use client"
 
-const ContactSection = () => {
-  const [emailSubmitted, setEmailSubmitted] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+import type React from "react"
+import { useEffect, useState, type FormEvent } from "react"
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(null);
-    const target = e.target as typeof e.target & {
-      email: { value: string };
-      subject: { value: string };
-      message: { value: string };
+import emailjs from "@emailjs/browser";
+
+
+const public_key = "aDqVljl7xqfsTxiw4";
+const service_id = "service_52h0qat";
+const template_id = "template_j494u0g";
+
+export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+  const [isLoading, setIsLoading] = useState(false)
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle")
+
+  useEffect(() => {
+    const timer = async () => {
+      if (status) {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        setStatus('idle');
+      }
     };
-    const data = {
-      email: target.email.value,
-      subject: target.subject.value,
-      message: target.message.value,
-    };
-    const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/contact";
+  
+    timer();
+  }, [status]);
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prevData) => ({ ...prevData, [name]: value }))
+  }
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsLoading(true)
+    setStatus("idle")
 
     try {
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      emailjs.send(service_id, template_id, formData, public_key).then(
+        () => {
+          setStatus("success");
         },
-        body: JSONdata,
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        console.log("Message sent:", result);
-        setEmailSubmitted(true);
-      } else {
-        console.error("Error sending message:", result);
-        setError(`Failed to send message: ${result.error}. ${result.details || ''}`);
-      }
+        () => {
+          setStatus("error");
+        }
+      );
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+      // Here you would typically send the formData to your backend
+      console.log("Form submitted:", formData)
+      setStatus("success")
+      setFormData({ name: "", email: "", message: "" })
     } catch (error) {
-      console.error("Error:", error);
-      setError("An unexpected error occurred. Please try again.");
+      console.error("Error submitting form:", error)
+      setStatus("error")
+    } finally {
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
-    <section
-      id="contact"
-      className="grid md:grid-cols-2 my-12 md:my-12 py-24 gap-4 relative"
-    >
-      <div className="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary-900 to-transparent rounded-full h-80 w-80 z-0 blur-lg absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-1/2"></div>
-      <div className="z-10">
-        <h5 className="text-xl font-bold text-white my-2">
-          Let&apos;s Connect
-        </h5>
-        <p className="text-[#ADB7BE] mb-4 max-w-md">
-          {" "}
-          I&apos;m currently looking for new opportunities, my inbox is always
-          open. Whether you have a question or just want to say hi, I&apos;ll
-          try my best to get back to you!
-        </p>
-        <div className="socials flex flex-row gap-2">
-          <Link href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary-500">
-            GitHub
-          </Link>
-          <Link href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary-500">
-            LinkedIn
-          </Link>
+    <div id="contact" className="flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+      <div className="max-w-md w-full">
+        <div>
+          <h2 className="text-center text-3xl font-extrabold text-gray-900">Contact Us</h2>
         </div>
-      </div>
-      <div>
-        {emailSubmitted ? (
-          <p className="text-green-500 text-sm mt-2">
-            Email sent successfully!
-          </p>
-        ) : (
-          <form className="flex flex-col" onSubmit={handleSubmit}>
-            <div className="mb-6">
-              <label
-                htmlFor="email"
-                className="text-white block mb-2 text-sm font-medium"
-              >
-                Your email
+        <form className="mt-5 space-y-6" onSubmit={handleSubmit}>
+          <div className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                Name
               </label>
               <input
+                id="name"
+                name="name"
+                type="text"
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Your name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email address
+              </label>
+              <input
+                id="email"
                 name="email"
                 type="email"
-                id="email"
+                autoComplete="email"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="jacob@google.com"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="you@example.com"
+                value={formData.email}
+                onChange={handleChange}
               />
             </div>
-            <div className="mb-6">
-              <label
-                htmlFor="subject"
-                className="text-white block text-sm mb-2 font-medium"
-              >
-                Subject
-              </label>
-              <input
-                name="subject"
-                type="text"
-                id="subject"
-                required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="Just saying hi"
-              />
-            </div>
-            <div className="mb-6">
-              <label
-                htmlFor="message"
-                className="text-white block text-sm mb-2 font-medium"
-              >
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700">
                 Message
               </label>
               <textarea
-                name="message"
                 id="message"
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="Let's talk about..."
-              />
+                name="message"
+                rows={4}
+                required
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Your message"
+                value={formData.message}
+                onChange={handleChange}
+              ></textarea>
             </div>
-            {error && (
-              <p className="text-red-500 text-sm mb-4">{error}</p>
-            )}
+          </div>
+
+          <div>
             <button
               type="submit"
-              className="bg-primary-500 hover:bg-primary-600 text-black font-medium py-2.5 px-5 rounded-lg w-full"
+              disabled={isLoading}
+              className={`group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white ${
+                isLoading ? "bg-indigo-400" : "bg-indigo-600 hover:bg-indigo-700"
+              } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-300 ease-in-out`}
             >
-              Send Message
+              {isLoading ? (
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              ) : null}
+              {isLoading ? "Sending..." : "Send Message"}
             </button>
-          </form>
+          </div>
+        </form>
+
+        {status === "success" && (
+          <div className="mt-4 text-sm text-green-600 bg-green-100 border border-green-400 rounded-md p-3 animate-fade-in-down">
+            Thank you for your message. We'll get back to you soon!
+          </div>
+        )}
+
+        {status === "error" && (
+          <div className="mt-4 text-sm text-red-600 bg-red-100 border border-red-400 rounded-md p-3 animate-fade-in-down">
+            Oops! Something went wrong. Please try again later.
+          </div>
         )}
       </div>
-    </section>
-  );
-};
-
-export default ContactSection;
+    </div>
+  )
+}
 

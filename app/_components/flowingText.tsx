@@ -6,8 +6,8 @@ export default function FlowingText() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleMouseEnter = () => setIsHovered(true);
-  const handleMouseLeave = () => setIsHovered(false);
+  // const handleMouseEnter = () => setIsHovered(true);
+  // const handleMouseLeave = () => setIsHovered(false);
 
   useEffect(() => {
     const container = containerRef.current
@@ -36,8 +36,8 @@ export default function FlowingText() {
     <div 
       ref={containerRef}
       className="w-full overflow-hidden py-20 bg-gradient-to-r from-blue-500/10 to-blue-500/5"
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      // onMouseEnter={handleMouseEnter}
+      // onMouseLeave={handleMouseLeave}
     >
       <style jsx>{`
         @keyframes scrollRight {

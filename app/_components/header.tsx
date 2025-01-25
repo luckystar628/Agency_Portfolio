@@ -4,10 +4,11 @@ import { useState, useEffect } from 'react'
 import { useTheme } from './ThemeProvider'
 import Link from 'next/link'
 
+
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const { isDarkMode, toggleDarkMode } = useTheme()
   const [activeSection, setActiveSection] = useState('hero')
+  const { toggleBookingModal } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,8 +83,8 @@ export default function Header() {
             { name: 'Blogs', id: 'testimonials' },
             { name: 'Contact', id: 'contact' },
             { name: 'About', id: 'details' }
-          ].map((item) => (
-            <Link href={`/#${item.id}`}>
+          ].map((item, key) => (
+            <Link key={key} href={`/#${item.id}`}>
             <button 
               key={item.name}
               // onClick={() => scrollToSection(item.id)}
@@ -95,7 +96,7 @@ export default function Header() {
           ))}
           
           <button
-            // onClick={() => scrollToSection('contact')}
+            onClick={() => toggleBookingModal()}
             className={`px-8 py-3 rounded-full transition-all duration-300 text-base font-medium ${
               isScrolled
                 ? 'bg-white text-[#111111] hover:bg-opacity-90'

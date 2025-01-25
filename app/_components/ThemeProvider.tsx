@@ -1,37 +1,52 @@
-'use client'
+"use client"
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from "react"
 
-const ThemeContext = createContext<{
-  isDarkMode: boolean
-  toggleDarkMode: () => void
-}>({
-  isDarkMode: false,
-  toggleDarkMode: () => {},
-})
+type Theme = "light" | "dark"
 
-export const useTheme = () => useContext(ThemeContext)
+type ThemeContextType = {
+  theme: Theme
+  isOpenBookingModal: boolean
+  toggleTheme: () => void
+  toggleBookingModal: () => void
+}
+
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+
+export const useTheme = () => {
+  const context = useContext(ThemeContext)
+  if (context === undefined) {
+    throw new Error("useTheme must be used within a ThemeProvider")
+  }
+  return context
+}
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [isDarkMode, setIsDarkMode] = useState(false)
+  const [theme, setTheme] = useState<Theme>("light")
+  const [isOpenBookingModal, setIsOpenBookingModal] = useState(false);
 
   useEffect(() => {
-    const isDark = localStorage.getItem('darkMode') === 'true'
-    setIsDarkMode(isDark)
-    document.documentElement.classList.toggle('dark', isDark)
+    const storedTheme = localStorage.getItem("theme") as Theme | null
+    if (storedTheme) {
+      setTheme(storedTheme)
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setTheme("dark")
+    }
   }, [])
 
-  const toggleDarkMode = () => {
-    const newDarkMode = !isDarkMode
-    setIsDarkMode(newDarkMode)
-    localStorage.setItem('darkMode', newDarkMode.toString())
-    document.documentElement.classList.toggle('dark', newDarkMode)
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark")
+    localStorage.setItem("theme", theme)
+  }, [theme])
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"))
   }
 
-  return (
-    <ThemeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
-      {children}
-    </ThemeContext.Provider>
-  )
+  const toggleBookingModal = () => {
+    setIsOpenBookingModal(!isOpenBookingModal);
+  };
+
+  return <ThemeContext.Provider value={{ theme, isOpenBookingModal, toggleTheme, toggleBookingModal }}>{children}</ThemeContext.Provider>
 }
 
