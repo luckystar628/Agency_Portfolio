@@ -10,7 +10,7 @@ import DarkModeToggle from './_components/darkModeToogle'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Appifyo - IT Agency',
+  title: 'With Gru - IT Agency',
   description: 'Forging Digital Excellence With Design, Development & Marketing',
 }
 
