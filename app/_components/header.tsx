@@ -82,8 +82,8 @@ export default function Header() {
             { name: 'Blogs', id: 'testimonials' },
             { name: 'Contact', id: 'contact' },
             { name: 'About', id: 'details' }
-          ].map((item) => (
-            <Link href={`/#${item.id}`}>
+          ].map((item, key) => (
+            <Link key={key} href={`/#${item.id}`}>
             <button 
               key={item.name}
               // onClick={() => scrollToSection(item.id)}
