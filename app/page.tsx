@@ -6,8 +6,10 @@ import TestimonialsSection from './_components/testimonials'
 import PricingSection from './_components/pricing'
 import ContactSection from './_components/contact'
 import BookingModal from './_components/bookingModal'
+import { useTheme } from './_components/ThemeProvider'
 
-export default async function Home() {
+export default function Home() {
+  const {isOpenBookingModal} = useTheme()
   return (
     <>
       <HeroSection />
@@ -16,7 +18,9 @@ export default async function Home() {
       <TestimonialsSection />
       <PricingSection />
       <ContactSection />
-      <BookingModal/>
+      {isOpenBookingModal && 
+        <BookingModal/>
+      }
     </>
   )
 }

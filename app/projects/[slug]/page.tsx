@@ -1,20 +1,21 @@
-"use client"
+"use client";
 
-import { useEffect, useState, useCallback } from "react"
-import Link from "next/link"
-import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react"
-import Header from "@/app/_components/header"
-import RelatedProjects from "@/app/_components/projects/RelatedProjects"
-import BookingModal from "@/app/_components/bookingModal"
+import { useEffect, useState, useCallback } from "react";
+import Link from "next/link";
+import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react";
+import Header from "@/app/_components/header";
+import RelatedProjects from "@/app/_components/projects/RelatedProjects";
+import BookingModal from "@/app/_components/bookingModal";
+import { useTheme } from "@/app/_components/ThemeProvider";
 
 interface ProjectDetails {
-  slug: string
-  title: string
-  category: string
-  description: string
-  fullDescription: string[]
-  images: string[]
-  timestamp: string
+  slug: string;
+  title: string;
+  category: string;
+  description: string;
+  fullDescription: string[];
+  images: string[];
+  timestamp: string;
 }
 
 const projectsData: ProjectDetails[] = [
@@ -22,7 +23,8 @@ const projectsData: ProjectDetails[] = [
     slug: "e-commerce-platform",
     title: "E-commerce Platform",
     category: "Web Development",
-    description: "A fully responsive online store with advanced features and seamless user experience.",
+    description:
+      "A fully responsive online store with advanced features and seamless user experience.",
     fullDescription: [
       "Our e-commerce platform is designed to provide a seamless shopping experience for customers and an easy-to-manage backend for store owners.",
       "We implemented advanced features such as real-time inventory management, personalized product recommendations, and a streamlined checkout process.",
@@ -40,7 +42,8 @@ const projectsData: ProjectDetails[] = [
     slug: "decentralized-exchange",
     title: "Decentralized Exchange",
     category: "Blockchain Development",
-    description: "A secure and efficient platform for trading cryptocurrencies without intermediaries.",
+    description:
+      "A secure and efficient platform for trading cryptocurrencies without intermediaries.",
     fullDescription: [
       "Our decentralized exchange (DEX) leverages blockchain technology to provide a trustless and transparent trading environment.",
       "We implemented advanced features such as atomic swaps, liquidity pools, and yield farming to attract and retain users.",
@@ -58,7 +61,8 @@ const projectsData: ProjectDetails[] = [
     slug: "ai-powered-chatbot",
     title: "AI-Powered Chatbot",
     category: "AI Solution",
-    description: "An intelligent conversational AI for customer support and engagement.",
+    description:
+      "An intelligent conversational AI for customer support and engagement.",
     fullDescription: [
       "Our AI-powered chatbot uses natural language processing and machine learning to provide human-like interactions with customers.",
       "The chatbot is trained on a vast dataset of customer inquiries and can handle a wide range of topics, from product information to troubleshooting.",
@@ -76,7 +80,8 @@ const projectsData: ProjectDetails[] = [
     slug: "portfolio-website",
     title: "Portfolio Website",
     category: "Web Development",
-    description: "A fully responsive online store with advanced features and seamless user experience.",
+    description:
+      "A fully responsive online store with advanced features and seamless user experience.",
     fullDescription: [
       "Our e-commerce platform is designed to provide a seamless shopping experience for customers and an easy-to-manage backend for store owners.",
       "We implemented advanced features such as real-time inventory management, personalized product recommendations, and a streamlined checkout process.",
@@ -94,7 +99,8 @@ const projectsData: ProjectDetails[] = [
     slug: "nft-marketplace",
     title: "Decentralized Exchange",
     category: "Web Development",
-    description: "A secure and efficient platform for trading cryptocurrencies without intermediaries.",
+    description:
+      "A secure and efficient platform for trading cryptocurrencies without intermediaries.",
     fullDescription: [
       "Our decentralized exchange (DEX) leverages blockchain technology to provide a trustless and transparent trading environment.",
       "We implemented advanced features such as atomic swaps, liquidity pools, and yield farming to attract and retain users.",
@@ -112,7 +118,8 @@ const projectsData: ProjectDetails[] = [
     slug: "predictive-analytics-tool",
     title: "AI-Powered Chatbot",
     category: "AI Solution",
-    description: "An intelligent conversational AI for customer support and engagement.",
+    description:
+      "An intelligent conversational AI for customer support and engagement.",
     fullDescription: [
       "Our AI-powered chatbot uses natural language processing and machine learning to provide human-like interactions with customers.",
       "The chatbot is trained on a vast dataset of customer inquiries and can handle a wide range of topics, from product information to troubleshooting.",
@@ -126,52 +133,64 @@ const projectsData: ProjectDetails[] = [
     ],
     timestamp: "Posted on March 15, 2024",
   },
-]
+];
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const [isBookingOpen, setIsBookingOpen] = useState(false)
-  const [projectDetails, setProjectDetails] = useState<ProjectDetails | null>(null)
-  const [activeImageIndex, setActiveImageIndex] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [projectDetails, setProjectDetails] = useState<ProjectDetails | null>(
+    null
+  );
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const { isOpenBookingModal, toggleBookingModal } = useTheme();
 
   const nextImage = useCallback(() => {
     if (projectDetails) {
-      setActiveImageIndex((prevIndex) => (prevIndex + 1) % projectDetails.images.length)
+      setActiveImageIndex(
+        (prevIndex) => (prevIndex + 1) % projectDetails.images.length
+      );
     }
-  }, [projectDetails])
+  }, [projectDetails]);
 
   const prevImage = useCallback(() => {
     if (projectDetails) {
-      setActiveImageIndex((prevIndex) => (prevIndex - 1 + projectDetails.images.length) % projectDetails.images.length)
+      setActiveImageIndex(
+        (prevIndex) =>
+          (prevIndex - 1 + projectDetails.images.length) %
+          projectDetails.images.length
+      );
     }
-  }, [projectDetails])
+  }, [projectDetails]);
 
   useEffect(() => {
     if (projectDetails) {
-      const intervalId = setInterval(nextImage, 15000) // Changed to 15 seconds
-      return () => clearInterval(intervalId)
+      const intervalId = setInterval(nextImage, 15000); // Changed to 15 seconds
+      return () => clearInterval(intervalId);
     }
-  }, [nextImage, projectDetails])
+  }, [nextImage, projectDetails]);
 
   useEffect(() => {
-    const project = projectsData.find((p) => p.slug === params.slug)
+    const project = projectsData.find((p) => p.slug === params.slug);
     if (project) {
-      setProjectDetails(project)
+      setProjectDetails(project);
     }
-    setIsLoading(false)
-  }, [params.slug])
+    setIsLoading(false);
+  }, [params.slug]);
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (!projectDetails) {
-    return <div>Project not found</div>
+    return <div>Project not found</div>;
   }
 
   const relatedProjects = projectsData
-    .filter((p) => p.category === projectDetails.category && p.slug !== projectDetails.slug)
-    .slice(0, 2)
+    .filter(
+      (p) =>
+        p.category === projectDetails.category && p.slug !== projectDetails.slug
+    )
+    .slice(0, 2);
 
   return (
     <div className="min-h-screen">
@@ -191,9 +210,15 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         <section id="overview" className="bg-gray-50">
           <div className="container mx-auto px-6 py-20">
             <div className="max-w-4xl">
-              <span className="text-blue-600 font-medium">{projectDetails.category}</span>
-              <h1 className="text-5xl font-bold mt-2 mb-6">{projectDetails.title}</h1>
-              <p className="text-gray-600 text-xl mb-8">{projectDetails.description}</p>
+              <span className="text-blue-600 font-medium">
+                {projectDetails.category}
+              </span>
+              <h1 className="text-5xl font-bold mt-2 mb-6">
+                {projectDetails.title}
+              </h1>
+              <p className="text-gray-600 text-xl mb-8">
+                {projectDetails.description}
+              </p>
               <Link
                 href="/#contact"
                 className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors inline-block"
@@ -233,7 +258,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     <img
                       src={
                         projectDetails.images[
-                          (index - 1 + projectDetails.images.length) % projectDetails.images.length
+                          (index - 1 + projectDetails.images.length) %
+                            projectDetails.images.length
                         ] || "/placeholder.svg"
                       }
                       alt={`Project preview ${index + 1}`}
@@ -249,7 +275,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                   </div>
                   <div className="w-1/6 overflow-hidden">
                     <img
-                      src={projectDetails.images[(index + 1) % projectDetails.images.length] || "/placeholder.svg"}
+                      src={
+                        projectDetails.images[
+                          (index + 1) % projectDetails.images.length
+                        ] || "/placeholder.svg"
+                      }
                       alt={`Project preview ${index + 1}`}
                       className="object-cover w-full h-full filter blur-sm brightness-75"
                     />
@@ -264,8 +294,13 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         <section id="details" className="container mx-auto px-6 py-20">
           <div className="max-w-4xl mx-auto">
             {projectDetails.fullDescription.map((paragraph, index) => (
-              <div key={index} className="mb-12 pb-12 border-b border-gray-200 last:border-0">
-                <p className="text-gray-600 text-lg leading-relaxed">{paragraph}</p>
+              <div
+                key={index}
+                className="mb-12 pb-12 border-b border-gray-200 last:border-0"
+              >
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  {paragraph}
+                </p>
               </div>
             ))}
             <p className="text-sm text-gray-500">{projectDetails.timestamp}</p>
@@ -284,13 +319,16 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         <section className="bg-gray-50 py-20">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl font-bold mb-4">Let's Create Something Amazing Together</h2>
+              <h2 className="text-4xl font-bold mb-4">
+                Let's Create Something Amazing Together
+              </h2>
               <p className="text-gray-600 text-lg mb-8">
-                Boost your online growth with Appifyo! Let our expert team transform your digital presence and drive
-                your business forward. Start today!
+                Boost your online growth with Appifyo! Let our expert team
+                transform your digital presence and drive your business forward.
+                Start today!
               </p>
               <button
-                onClick={() => setIsBookingOpen(true)}
+                onClick={() => toggleBookingModal()}
                 className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors"
               >
                 Book a Call
@@ -299,7 +337,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
       </div>
+      {isOpenBookingModal && <BookingModal />}
     </div>
-  )
+  );
 }
-
