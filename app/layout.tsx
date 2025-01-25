@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import Header from './_components/header'
 import Footer from './_components/footer'
 import ThemeProvider from './_components/ThemeProvider'
+import BookingModal from './_components/bookingModal'
 import DarkModeToggle from './_components/darkModeToogle'
 
 const inter = Inter({ subsets: ['latin'] })
