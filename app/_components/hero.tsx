@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import FlowingText from './flowingText'
 import { set } from 'date-fns'
+import { useTheme } from './ThemeProvider'
 
 const AnimatedCounter = ({ end, label }: { end: number, label: string }) => {
   const [count, setCount] = useState(0);
@@ -45,7 +46,8 @@ const AnimatedCounter = ({ end, label }: { end: number, label: string }) => {
 }
 
 export default function HeroSection() {
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
+  const { toggleBookingModal } = useTheme()
+
   const titleRef = useRef<HTMLHeadingElement>(null)
   const descriptionRef = useRef<HTMLParagraphElement>(null)
 
@@ -99,7 +101,7 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="space-x-4 pt-24">
-        <a className="inline-block bg-white text-blue-500 px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors" onClick={() => setIsBookingModalOpen(true)}>
+        <a className="inline-block bg-white text-blue-500 px-8 py-3 rounded-full cursor-pointer font-semibold hover:bg-opacity-90 transition-colors" onClick={() => toggleBookingModal()}>
             Book a Call
           </a>
           <a href="#services" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors">

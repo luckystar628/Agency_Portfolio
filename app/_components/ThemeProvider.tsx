@@ -6,7 +6,9 @@ type Theme = "light" | "dark"
 
 type ThemeContextType = {
   theme: Theme
+  isOpenBookingModal: boolean
   toggleTheme: () => void
+  toggleBookingModal: () => void
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
@@ -21,6 +23,7 @@ export const useTheme = () => {
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light")
+  const [isOpenBookingModal, setIsOpenBookingModal] = useState(false);
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme") as Theme | null
@@ -40,6 +43,10 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"))
   }
 
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
+  const toggleBookingModal = () => {
+    setIsOpenBookingModal(!isOpenBookingModal);
+  };
+
+  return <ThemeContext.Provider value={{ theme, isOpenBookingModal, toggleTheme, toggleBookingModal }}>{children}</ThemeContext.Provider>
 }
 

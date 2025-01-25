@@ -8,7 +8,7 @@ import Link from 'next/link'
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('hero')
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
+  const { toggleBookingModal } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -96,7 +96,7 @@ export default function Header() {
           ))}
           
           <button
-            onClick={() => setIsBookingModalOpen(true)}
+            onClick={() => toggleBookingModal()}
             className={`px-8 py-3 rounded-full transition-all duration-300 text-base font-medium ${
               isScrolled
                 ? 'bg-white text-[#111111] hover:bg-opacity-90'

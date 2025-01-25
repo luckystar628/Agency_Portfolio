@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect, useState, useCallback } from "react"
 import Link from "next/link"
@@ -8,49 +8,61 @@ import BookingModal from "@/app/_components/bookingModal"
 import { projectsData } from "@/app/_data/projectData"
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const [isBookingOpen, setIsBookingOpen] = useState(false)
-  const [projectDetails, setProjectDetails] = useState<ProjectDetails | null>(null)
-  const [activeImageIndex, setActiveImageIndex] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+  const [projectDetails, setProjectDetails] = useState<ProjectDetails | null>(
+    null
+  );
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const { isOpenBookingModal, toggleBookingModal } = useTheme();
 
   const nextImage = useCallback(() => {
     if (projectDetails) {
-      setActiveImageIndex((prevIndex) => (prevIndex + 1) % projectDetails.images.length)
+      setActiveImageIndex(
+        (prevIndex) => (prevIndex + 1) % projectDetails.images.length
+      );
     }
-  }, [projectDetails])
+  }, [projectDetails]);
 
   const prevImage = useCallback(() => {
     if (projectDetails) {
-      setActiveImageIndex((prevIndex) => (prevIndex - 1 + projectDetails.images.length) % projectDetails.images.length)
+      setActiveImageIndex(
+        (prevIndex) =>
+          (prevIndex - 1 + projectDetails.images.length) %
+          projectDetails.images.length
+      );
     }
-  }, [projectDetails])
+  }, [projectDetails]);
 
   useEffect(() => {
     if (projectDetails) {
-      const intervalId = setInterval(nextImage, 15000) // Changed to 15 seconds
-      return () => clearInterval(intervalId)
+      const intervalId = setInterval(nextImage, 15000); // Changed to 15 seconds
+      return () => clearInterval(intervalId);
     }
-  }, [nextImage, projectDetails])
+  }, [nextImage, projectDetails]);
 
   useEffect(() => {
-    const project = projectsData.find((p) => p.slug === params.slug)
+    const project = projectsData.find((p) => p.slug === params.slug);
     if (project) {
-      setProjectDetails(project)
+      setProjectDetails(project);
     }
-    setIsLoading(false)
-  }, [params.slug])
+    setIsLoading(false);
+  }, [params.slug]);
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (!projectDetails) {
-    return <div>Project not found</div>
+    return <div>Project not found</div>;
   }
 
   const relatedProjects = projectsData
-    .filter((p) => p.category === projectDetails.category && p.slug !== projectDetails.slug)
-    .slice(0, 2)
+    .filter(
+      (p) =>
+        p.category === projectDetails.category && p.slug !== projectDetails.slug
+    )
+    .slice(0, 2);
 
   return (
     <div className="min-h-screen">
@@ -70,9 +82,15 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         <section id="overview" className="bg-gray-50">
           <div className="container mx-auto px-6 py-20">
             <div className="max-w-4xl">
-              <span className="text-blue-600 font-medium">{projectDetails.category}</span>
-              <h1 className="text-5xl font-bold mt-2 mb-6">{projectDetails.title}</h1>
-              <p className="text-gray-600 text-xl mb-8">{projectDetails.description}</p>
+              <span className="text-blue-600 font-medium">
+                {projectDetails.category}
+              </span>
+              <h1 className="text-5xl font-bold mt-2 mb-6">
+                {projectDetails.title}
+              </h1>
+              <p className="text-gray-600 text-xl mb-8">
+                {projectDetails.description}
+              </p>
               <Link
                 href="/#contact"
                 className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors inline-block"
@@ -112,7 +130,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     <img
                       src={
                         projectDetails.images[
-                          (index - 1 + projectDetails.images.length) % projectDetails.images.length
+                          (index - 1 + projectDetails.images.length) %
+                            projectDetails.images.length
                         ] || "/placeholder.svg"
                       }
                       alt={`Project preview ${index + 1}`}
@@ -128,7 +147,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                   </div>
                   <div className="w-1/6 h-1/3 overflow-hidden">
                     <img
-                      src={projectDetails.images[(index + 1) % projectDetails.images.length] || "/placeholder.svg"}
+                      src={
+                        projectDetails.images[
+                          (index + 1) % projectDetails.images.length
+                        ] || "/placeholder.svg"
+                      }
                       alt={`Project preview ${index + 1}`}
                       className="object-cover w-full h-full filter brightness-50"
                     />
@@ -143,8 +166,13 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         <section id="details" className="container mx-auto px-6 py-20 ">
           <div className="max-w-4xl mx-auto flex flex-col items-center justify-center">
             {projectDetails.fullDescription.map((paragraph, index) => (
-              <div key={index} className="mb-12 pb-12 border-b border-gray-200 last:border-0">
-                <p className="text-gray-600 text-lg leading-relaxed">{paragraph}</p>
+              <div
+                key={index}
+                className="mb-12 pb-12 border-b border-gray-200 last:border-0"
+              >
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  {paragraph}
+                </p>
               </div>
             ))}
             <div className="text-sm text-gray-500 flex justify-end w-full"><span>{projectDetails.timestamp}</span></div>
@@ -163,13 +191,16 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         <section className="bg-gray-50 py-20">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-4xl font-bold mb-4">Let's Create Something Amazing Together</h2>
+              <h2 className="text-4xl font-bold mb-4">
+                Let's Create Something Amazing Together
+              </h2>
               <p className="text-gray-600 text-lg mb-8">
-                Boost your online growth with Appifyo! Let our expert team transform your digital presence and drive
-                your business forward. Start today!
+                Boost your online growth with Appifyo! Let our expert team
+                transform your digital presence and drive your business forward.
+                Start today!
               </p>
               <button
-                onClick={() => setIsBookingOpen(true)}
+                onClick={() => toggleBookingModal()}
                 className="bg-black text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition-colors"
               >
                 Book a Call
@@ -178,7 +209,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
           </div>
         </section>
       </div>
+      {isOpenBookingModal && <BookingModal />}
     </div>
-  )
+  );
 }
-
