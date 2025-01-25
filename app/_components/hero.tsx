@@ -38,9 +38,9 @@ const AnimatedCounter = ({ end, label }: { end: number, label: string }) => {
     <div ref={ref} className="text-center">
       <div className="flex items-center justify-center">
         <span className="text-3xl font-bold">{count}</span>
-        <span className="text-3xl font-bold text-orange-500 ml-2">+</span>
+        <span className="text-3xl font-bold text-blue-500 ml-2">+</span>
       </div>
-      <p className="text-orange-600 dark:text-orange-300 mt-2">{label}</p>
+      <p className= "text-blue-500 mt-2">{label}</p>
     </div>
   )
 }
@@ -76,7 +76,7 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section id="hero" className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-500 to-indigo-500 text-white">
+    <section id="hero" className="min-h-screen flex flex-col items-center justify-center ">
       <div className="container mx-auto px-6 text-center">
         <div>
           <h1 ref={titleRef} className="text-4xl md:text-6xl font-bold mt-32 mb-6 leading-tight">
@@ -101,10 +101,10 @@ export default function HeroSection() {
           </div>
         </div>
         <div className="space-x-4 pt-24">
-        <a className="inline-block bg-white text-blue-500 px-8 py-3 rounded-full cursor-pointer font-semibold hover:bg-opacity-90 transition-colors" onClick={() => toggleBookingModal()}>
+        <a className="inline-block bg-gray-200 text-black px-8 py-3 rounded-full cursor-pointer font-semibold hover:bg-opacity-90 transition-colors" onClick={() => toggleBookingModal()}>
             Book a Call
           </a>
-          <a href="#services" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors">
+          <a href="#services" className="inline-block bg-gray-500 text-white dark:text-gray-300 px-8 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors">
             Get Started
           </a>
         </div>

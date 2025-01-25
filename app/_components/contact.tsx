@@ -63,15 +63,15 @@ export default function ContactForm() {
   }
 
   return (
-    <div id="contact" className="flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
+    <div id="contact" className="flex items-center justify-center  bg-gray-100 dark:bg-gray-800 px-4 sm:px-6 lg:px-8 py-20">
       <div className="max-w-md w-full">
         <div>
-          <h2 className="text-center text-3xl font-extrabold text-gray-900">Contact Us</h2>
+          <h2 className="text-center text-3xl font-extrabold ">Contact Us</h2>
         </div>
         <form className="mt-5 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="block text-sm font-medium">
                 Name
               </label>
               <input
@@ -86,7 +86,7 @@ export default function ContactForm() {
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium ">
                 Email address
               </label>
               <input
@@ -102,7 +102,7 @@ export default function ContactForm() {
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="message" className="block text-sm font-medium ">
                 Message
               </label>
               <textarea

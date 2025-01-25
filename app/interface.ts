@@ -17,3 +17,9 @@ interface BookingModalProps {
   isOpen?: boolean;
   onClose?: () => void;
 }
+
+interface Service {
+  title: string;
+  description: string;
+  icon: string;
+}

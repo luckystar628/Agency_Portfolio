@@ -50,8 +50,8 @@ export default function Header() {
       <nav 
         className={`flex justify-between items-center transition-all duration-300 ${
           isScrolled 
-            ? 'w-[50%] bg-[#111111]/90 text-white rounded-2xl backdrop-blur-sm py-1 px-4' 
-            : 'w-[80%] bg-white text-black py-2 px-8 rounded-2xl shadow-lg'
+            ? 'w-[50%] bg-[#111111]/90 dark:bg-gray-400 text-white dark:text-black rounded-2xl backdrop-blur-sm py-1 px-4' 
+            : 'w-[80%] bg-white dark:bg-gray-950 text-black dark:text-white py-2 px-8 rounded-2xl shadow-lg'
         }`}
       >
         <Link href="/" className="flex items-center space-x-2">
