@@ -23,7 +23,7 @@ export default function Home() {
       <TestimonialsSection />
       <PricingSection />
       <ContactSection />
-      <BookingModal/>
+      {/* <BookingModal/> */}
     </>
   )
 }

@@ -104,11 +104,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
               {projectDetails.images.map((image, index) => (
                 <div
                   key={index}
-                  className={`absolute inset-0 flex transition-opacity duration-1000 ${
+                  className={`absolute inset-0 flex transition-opacity duration-1000 flex flex-row justify-center items-center gap-4 ${
                     index === activeImageIndex ? "opacity-100" : "opacity-0"
                   }`}
                 >
-                  <div className="w-1/6 overflow-hidden">
+                  <div className="w-1/6 h-1/3 overflow-hidden">
                     <img
                       src={
                         projectDetails.images[
@@ -116,21 +116,21 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                         ] || "/placeholder.svg"
                       }
                       alt={`Project preview ${index + 1}`}
-                      className="object-cover w-full h-full filter blur-sm brightness-75"
+                      className="object-cover w-full h-full filter brightness-50"
                     />
                   </div>
-                  <div className="w-2/3">
+                  <div className="h-full">
                     <img
-                      src={image || "/placeholder.svg"}
+                      src={image || "/placeholder.svg"} 
                       alt={`Project image ${index + 1}`}
                       className="object-contain w-full h-full"
                     />
                   </div>
-                  <div className="w-1/6 overflow-hidden">
+                  <div className="w-1/6 h-1/3 overflow-hidden">
                     <img
                       src={projectDetails.images[(index + 1) % projectDetails.images.length] || "/placeholder.svg"}
                       alt={`Project preview ${index + 1}`}
-                      className="object-cover w-full h-full filter blur-sm brightness-75"
+                      className="object-cover w-full h-full filter brightness-50"
                     />
                   </div>
                 </div>
