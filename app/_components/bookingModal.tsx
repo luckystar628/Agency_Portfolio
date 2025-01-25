@@ -9,10 +9,7 @@ import {
   ClockIcon,
 } from "lucide-react";
 
-interface BookingModalProps {
-  isOpen?: boolean;
-  onClose?: () => void;
-}
+
 
 export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
   // Add Calendly script when component mounts
@@ -30,8 +27,8 @@ export default function BookingModal({ isOpen, onClose }: BookingModalProps) {
   return (
     <div className={`fixed top-[50%] -translate-y-[50%] right-[50%] translate-x-[50%] z-50 w-full h-auto ${true ? "" : "invisible"}`}>
       <div
-        class="calendly-inline-widget w-full h-full"
-        data-url="https://calendly.com/luckydev0331/30min"
+        className="calendly-inline-widget w-full h-full"
+        data-url="https://calendly.com/luckystar000628/introduction"
         style={{ minWidth: 320 + "px", height: 730 + "px" }}
       />
       <script

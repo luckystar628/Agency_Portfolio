@@ -10,4 +10,10 @@ interface ProjectDetails {
   fullDescription: string[];
   images: string[];
   timestamp: string;
+  skills: string[];
+}
+
+interface BookingModalProps {
+  isOpen?: boolean;
+  onClose?: () => void;
 }
